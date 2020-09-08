@@ -2,6 +2,12 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
+            <?php if(isset($edit)){ ?>
+                <h3 style="text-align: center;">Edit information of <?= $edit->first_name;?></h3>
+            <?php } else{?>
+                <h3 style="text-align: center;">Add an new contact</h3>
+            <?php }?>
+          <p><a href="<?= base_url(); ?>">Back to Home</a></p>
             <form action="<?=base_url()?>Welcome/submit_contact" method="post">
                 <?php if(isset($edit)){ ?>
                     <input type="hidden" name="id" value="<?=$edit->id?>">
@@ -22,7 +28,12 @@
                 <label for="exampleInputPassword1">Date of Birth</label>
                 <input type="date" name="dob" class="form-control" id="exampleInputPassword1" value="<?=@$edit->dob?>">
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              
+              <?php if(isset($edit)){ ?>
+                  <button type="submit" class="btn btn-primary">Update</button>
+              <?php } else{?>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+              <?php }?>
             </form>
             
         </div>
